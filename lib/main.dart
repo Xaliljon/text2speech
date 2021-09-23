@@ -72,7 +72,7 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
             lastWords,
             textAlign: TextAlign.center,
           ),
-          Positioned.fill(
+      /*    Positioned.fill(
             bottom: 10,
             child: Align(
               alignment: Alignment.bottomCenter,
@@ -96,7 +96,7 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
                 ),
               ),
             ),
-          ),
+          ),*/
           /*Expanded(
             flex: 4,
             child: RecognitionResultsWidget(lastWords: lastWords, level: level),
