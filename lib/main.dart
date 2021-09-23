@@ -27,7 +27,7 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
   String lastWords = '';
   String lastError = '';
   String lastStatus = '';
-  final String _currentLocaleId = 'uz-UZ';
+   String _currentLocaleId = 'uz-UZ';
   final SpeechToText speech = SpeechToText();
 
   @override
@@ -52,63 +52,61 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Speech to Text Example'),
         ),
-        body: SafeArea(
-          child: Column(children: [
-            Container(
-              child: Column(
-                children: <Widget>[
-                  InitSpeechWidget(_hasSpeech, initSpeechState),
-                  SpeechControlWidget(_hasSpeech, speech.isListening,
-                      startListening, stopListening, cancelListening),
+        body: Column(children: [
+          Container(
+            child: Column(
+              children: <Widget>[
+                InitSpeechWidget(_hasSpeech, initSpeechState),
+                SpeechControlWidget(_hasSpeech, speech.isListening,
+                    startListening, stopListening, cancelListening),
 
-                ],
-              ),
+              ],
             ),
-            Text(
-              lastWords,
-              textAlign: TextAlign.center,
-            ),
-            Positioned.fill(
-              bottom: 10,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: .26,
-                          spreadRadius: level * 1.5,
-                          color: Colors.blue.withOpacity(.05))
-                    ],
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                  ),
-                  child: IconButton(
-                    icon: const Icon(Icons.mic),
-                    onPressed: () => null,
-                  ),
+          ),
+          Text(
+            lastWords,
+            textAlign: TextAlign.center,
+          ),
+          Positioned.fill(
+            bottom: 10,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: 40,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: .26,
+                        spreadRadius: level * 1.5,
+                        color: Colors.blue.withOpacity(.05))
+                  ],
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
+                ),
+                child: IconButton(
+                  icon: const Icon(Icons.mic),
+                  onPressed: () => null,
                 ),
               ),
             ),
-            /*Expanded(
-              flex: 4,
-              child: RecognitionResultsWidget(lastWords: lastWords, level: level),
-            ),*/
-            Expanded(
-              flex: 1,
-              child: ErrorWidgets(lastError: lastError),
-            ),
-            SpeechStatusWidget(speech: speech),
-          ]),
-        ),
+          ),
+          /*Expanded(
+            flex: 4,
+            child: RecognitionResultsWidget(lastWords: lastWords, level: level),
+          ),*/
+          Expanded(
+            flex: 1,
+            child: ErrorWidgets(lastError: lastError),
+          ),
+          SpeechStatusWidget(speech: speech),
+        ]),
       ),
     );
   }
